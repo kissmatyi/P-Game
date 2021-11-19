@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Menu">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backBtn"
+            style="@style/ownButton"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:onClick="toHome"
+            android:text="Log Out"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/profileBtn"
+            android:layout_marginLeft="210dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="80dp"
+            android:textSize="10dp"
+            android:layout_height="wrap_content"
+            android:onClick="toProfile"
+            style="@style/ownButton"
+            android:text="Profile" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        style="@style/ownButton"
+        android:layout_width="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:onClick="toNewGame"
+        android:layout_height="60dp"
+        android:text="New Game" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/ownButton"
+        android:layout_width="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_height="60dp"
+        android:onClick="toConnect"
+        android:text="Connect to a game" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/ownButton"
+        android:layout_width="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_height="60dp"
+        android:text="Topics" />
+</LinearLayout>

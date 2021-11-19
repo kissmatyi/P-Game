@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ownButton" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:backgroundTint">#66BB6A</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
