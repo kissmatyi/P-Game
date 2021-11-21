@@ -8,7 +8,7 @@
     tools:context=".Register">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/backBtn"
         style="@style/ownButton"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:text="Username: " />
 
         <EditText
-            android:id="@+id/userEdit"
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,7 +59,7 @@
             android:text="Password: " />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/userPass"
             android:layout_width="wrap_content"
             android:layout_marginRight="40dp"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:text="Password again: " />
 
         <EditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/userPassAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
@@ -95,7 +95,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/loginBtn"
         style="@style/ownButton"
         android:layout_width="180dp"
         android:layout_height="80dp"

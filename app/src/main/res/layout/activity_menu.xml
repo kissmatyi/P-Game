@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/backBtn"
+            android:id="@+id/logOutBtn"
             style="@style/ownButton"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/newGamebtn"
         style="@style/ownButton"
         android:layout_width="150dp"
         android:layout_marginTop="100dp"
@@ -49,7 +49,7 @@
         android:text="New Game" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/connectBtn"
         style="@style/ownButton"
         android:layout_width="150dp"
         android:layout_marginTop="100dp"
@@ -59,7 +59,7 @@
         android:text="Connect to a game" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/topicsBtn"
         style="@style/ownButton"
         android:layout_width="150dp"
         android:layout_marginTop="100dp"
