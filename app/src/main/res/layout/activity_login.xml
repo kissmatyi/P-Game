@@ -42,7 +42,7 @@
             android:ems="10"
             android:layout_marginRight="40dp"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="" />
     </LinearLayout>
 
     <LinearLayout
@@ -68,7 +68,6 @@
             android:layout_marginRight="40dp"
             android:inputType="textPassword" />
 
-
     </LinearLayout>
 
     <Button
@@ -77,7 +76,7 @@
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:onClick="toMenu"
         android:text="Login" />
 </LinearLayout>
