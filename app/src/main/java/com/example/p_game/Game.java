@@ -13,7 +13,7 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
     }
-
+//Push test
     public void toMenu(View v){
         Intent i = new Intent(this, Menu.class);
         startActivity(i);
