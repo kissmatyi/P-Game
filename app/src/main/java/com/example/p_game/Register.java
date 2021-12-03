@@ -23,7 +23,7 @@ public class Register extends AppCompatActivity {
     EditText pwagain;
     Button regBtn;
     EditText userName;
-    FirebaseDatabase db = FirebaseDatabase.getInstance("https://p-game-a75c2-default-rtdb.europe-west1.firebasedatabase.app/");
+    FirebaseDatabase db = new DatabaseConn().getConnection();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
