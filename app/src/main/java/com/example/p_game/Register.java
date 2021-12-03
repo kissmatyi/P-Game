@@ -63,7 +63,7 @@ public class Register extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.d("Nem működik", "onCancelled: ");
+                        Log.d("Doesn't work", "onCancelled: ");
                     }
                 });
             }
