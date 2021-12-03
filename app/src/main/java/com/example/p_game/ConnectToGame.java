@@ -1,5 +1,6 @@
 package com.example.p_game;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,13 +35,16 @@ public class ConnectToGame extends AppCompatActivity {
     }
 
     public void toGame(View v){
-        Intent i = new Intent(this, Game.class);
+        Intent i = new Intent(this, Waiting.class);
         db.getReference().child("games").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child(gameID.getText().toString()).exists()){
                     i.putExtra("gameID", gameID.getText().toString());
+                    DataSnapshot lastVal = (DataSnapshot) dataSnapshot.child("games").child(gameID.getText().toString()).getChildren();
+                    /*Log.d(String.valueOf(lastVal.getChildrenCount()), "onDataChange: ");
+                    Log.d(lastVal.getKey(), "onDataChange: ");*/
                     startActivity(i);
                 }
 
