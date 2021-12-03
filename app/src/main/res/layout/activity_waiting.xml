@@ -42,11 +42,11 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_width="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:textSize="20dp"
-            android:layout_height="wrap_content"
-            android:text="Topic: "/>
+            android:text="Topic: "
+            android:textSize="20dp" />
 
         <Spinner
             android:id="@+id/topicOptions"
@@ -60,7 +60,7 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
         android:textSize="20dp"
         android:text="Players:" />
