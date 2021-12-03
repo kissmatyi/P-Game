@@ -43,6 +43,7 @@ public class Login extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.child(userName.getText().toString()).exists() &&
                             dataSnapshot.child(userName.getText().toString()).child("password").getValue().equals(pw.getText().toString())){
+                        i.putExtra("userName", userName.getText().toString());
                         startActivity(i);
                     }
 

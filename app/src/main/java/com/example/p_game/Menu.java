@@ -8,10 +8,14 @@ import android.view.View;
 
 public class Menu extends AppCompatActivity {
 
+    String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        Intent i = getIntent();
+        name = i.getStringExtra("userName");
     }
 
     public void toHome(View v){
@@ -21,6 +25,7 @@ public class Menu extends AppCompatActivity {
 
     public void toProfile(View v){
         Intent i = new Intent(this, MyProfile.class);
+        i.putExtra("userName", name);
         startActivity(i);
     }
 

@@ -57,6 +57,7 @@ public class Register extends AppCompatActivity {
 
                         else{
                             ref.child(userName.getText().toString()).child("password").setValue(pw.getText().toString());
+                            i.putExtra("userName", userName.getText().toString());
                             startActivity(i);
                         }
                     }
