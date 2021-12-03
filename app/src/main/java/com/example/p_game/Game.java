@@ -18,4 +18,9 @@ public class Game extends AppCompatActivity {
         Intent i = new Intent(this, Menu.class);
         startActivity(i);
     }
+
+    public void toGameOver(View v){
+        Intent i = new Intent(this, GameOver.class);
+        startActivity(i);
+    }
 }

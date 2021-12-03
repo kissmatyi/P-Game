@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_height="315dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:divider="@color/white"
         android:dividerHeight="20dp"/>
 
@@ -91,5 +91,15 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        style="@style/ownButton"
+        android:onClick="toGameOver"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="End Game" />
 
 </LinearLayout>
