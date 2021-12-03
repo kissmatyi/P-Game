@@ -36,6 +36,7 @@ public class Menu extends AppCompatActivity {
 
     public void toNewGame(View v){
         Intent i = new Intent(this, Waiting.class);
+        i.putExtra("userName",this.name);
         startActivity(i);
     }
 }

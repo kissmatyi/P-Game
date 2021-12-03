@@ -12,9 +12,10 @@
         <entry key="..\:/Users/kissm/AndroidStudioProjects/Pgame/app/src/main/res/layout/activity_my_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kissm/AndroidStudioProjects/Pgame/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kissm/AndroidStudioProjects/Pgame/app/src/main/res/layout/activity_waiting.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/layout/activity_game.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/activity_game_over.xml" value="0.15443840579710144" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_waiting.xml" value="0.1539855072463768" />
+        <entry key="app/src/main/res/layout/activity_waiting.xml" value="0.25" />
       </map>
     </option>
   </component>
