@@ -32,6 +32,11 @@ public class Menu extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void toTopic(View v){
+        Intent i = new Intent(this, Topic.class);
+        startActivity(i);
+    }
+
     public void toProfile(View v){
         Intent i = new Intent(this, MyProfile.class);
         i.putExtra("userName", this.name);
