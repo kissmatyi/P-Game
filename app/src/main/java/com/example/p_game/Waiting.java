@@ -26,35 +26,17 @@ public class Waiting extends AppCompatActivity {
     }
 
     private void initValues(){
-        this.gameId = randomId();
-        twGameId = findViewById(R.id.gameID);
-        twGameId.setText(this.gameId.toUpperCase());
-        this.db = new DatabaseConn().getConnection();
-        gameIdToDb();
-
-    }
-
-    private void gameIdToDb(){
         Intent i = getIntent();
-        DatabaseReference dr = this.db.getReference("games");
-        db.getReference().child("games").child(this.gameId).child(i.getStringExtra("userName")).setValue(1);
-        //dr.child("games").setValue(this.gameId);
-
-    }
-
-    private String randomId(){
-        String randomId = "";
-        Random r = new Random();
-        for (int i = 0; i < 8; i++) {
-            char c = (char)(r.nextInt(26) + 'a');
-            randomId += c;
-        }
-        Log.d(randomId, "randomId: ");
-        return randomId.toUpperCase();
+        this.gameId = i.getStringExtra("gameId");
+        this.twGameId = findViewById(R.id.gameID);
+        this.twGameId.setText(this.gameId.toUpperCase());
+        this.db = new DatabaseConn().getConnection();
     }
 
     public void toMenu(View v){
         Intent i = new Intent(this, Menu.class);
         startActivity(i);
     }
+
+
 }
