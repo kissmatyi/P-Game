@@ -1,5 +1,6 @@
 package com.example.p_game;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,13 +10,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Waiting extends AppCompatActivity {
-    private String gameId;
+    private String gameId = "";
     private FirebaseDatabase db;
 
     private TextView twGameId;
@@ -54,11 +59,40 @@ public class Waiting extends AppCompatActivity {
     }
 
     private void loadPlayers() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        db.getReference().child("games").child(this.gameId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int index = 0;
+                TextView[] textViews = new TextView[]{twPlayer1, twPlayer2, twPlayer3, twPlayer4};
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if(index <= 4){
+                        textViews[index].setText(snapshot.getKey());
+                    }
+                    //SET PICTURE
+                    index++;
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void toMenu(View v){
         Intent i = new Intent(this, Menu.class);
+        startActivity(i);
+    }
+
+    public void toGame(View v){
+        Intent i = new Intent(this, Game.class);
+        i.putExtra("gameId", this.gameId);
         startActivity(i);
     }
 

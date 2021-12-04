@@ -76,8 +76,7 @@
                 android:id="@+id/twPlayer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer1"
@@ -106,8 +105,7 @@
                 android:id="@+id/twPlayer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer2"
@@ -136,8 +134,7 @@
                 android:id="@+id/twPlayer3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer3"
@@ -166,8 +163,7 @@
                 android:id="@+id/twPlayer4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer4"
@@ -191,6 +187,8 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         style="@style/ownButton"
-        android:text="Let's start" />
+        android:text="Let's start"
+        android:onClick="toGame"
+        />
 
 </LinearLayout>

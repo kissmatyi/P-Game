@@ -64,13 +64,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="401dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="75sp"
             android:orientation="horizontal">
 
             <Space
@@ -82,8 +82,7 @@
                 android:id="@+id/twPlayer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer1"
@@ -100,7 +99,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="75sp"
             android:orientation="horizontal">
 
             <Space
@@ -112,8 +111,7 @@
                 android:id="@+id/twPlayer2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer2"
@@ -130,7 +128,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="75sp"
             android:orientation="horizontal">
 
             <Space
@@ -142,8 +140,7 @@
                 android:id="@+id/twPlayer3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer3"
@@ -160,7 +157,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="75sp"
             android:orientation="horizontal">
 
             <Space
@@ -172,8 +169,7 @@
                 android:id="@+id/twPlayer4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:text="TextView" />
+                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer4"
@@ -193,33 +189,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20sp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:layout_weight="1"
-            android:text="Speaking: " />
+            android:layout_marginLeft="20sp"
+            android:text="Speaking: "
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/speakerName"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        style="@style/ownButton"
-        android:onClick="toGameOver"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center"
-        android:layout_width="150dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="End Game" />
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            style="@style/ownButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="toGameOver"
+            android:text="End Game" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

@@ -47,13 +47,12 @@ public class Menu extends AppCompatActivity {
     public void toNewGame(View v){
         Intent i = new Intent(this, Waiting.class);
         i.putExtra("userName",this.name);
-        this.gameId = generateGameId();
         gameIdToDb();
         i.putExtra("gameId", this.gameId);
         startActivity(i);
     }
 
-    private String generateGameId(){
+    private void generateGameId(){
         String randomId = "";
         Random r = new Random();
         for (int i = 0; i < 8; i++) {
@@ -61,11 +60,12 @@ public class Menu extends AppCompatActivity {
             randomId += c;
         }
         Log.d(randomId, "randomId: ");
-        return randomId.toUpperCase();
+        this.gameId = randomId.toUpperCase();
     }
 
     private void gameIdToDb(){
         Intent i = getIntent();
+        generateGameId();
         DatabaseReference dr = this.db.getReference("games");
         final String USERNAME = i.getStringExtra("userName");
         db.getReference().child("games").child(this.gameId).child(USERNAME).setValue(1);
