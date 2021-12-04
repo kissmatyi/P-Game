@@ -64,16 +64,12 @@ public class Menu extends AppCompatActivity {
             char c = (char)(r.nextInt(26) + 'a');
             randomId += c;
         }
-        Log.d(randomId, "randomId: ");
         this.gameId = randomId.toUpperCase();
     }
 
     private void gameIdToDb(){
-        Intent i = getIntent();
         generateGameId();
-        DatabaseReference dr = this.db.getReference("games");
-        final String USERNAME = i.getStringExtra("userName");
-        db.getReference().child("games").child(this.gameId).child(USERNAME).setValue(1);
+        db.getReference().child("games").child(this.gameId).child(this.name).setValue(1);
     }
 
 
