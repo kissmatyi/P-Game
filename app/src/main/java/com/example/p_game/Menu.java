@@ -70,35 +70,10 @@ public class Menu extends AppCompatActivity {
         startActivity(i);
     }
 
-    private String readUserNameFromFile(Context context) {
-        String ret = "";
-        try {
-            InputStream inputStream = context.openFileInput("userName.txt");
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-
-        return ret;
-    }
-
 
     public void toNewGame(View v){
-        this.name = readUserNameFromFile(this.getApplicationContext());
+        Model model = new Model();
+        this.name = model.readUserNameFromFile(this.getApplicationContext());
         Intent next = new Intent(this, Waiting.class);
 
         next.putExtra("userName",this.name);

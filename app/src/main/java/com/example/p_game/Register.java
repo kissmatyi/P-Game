@@ -58,6 +58,8 @@ public class Register extends AppCompatActivity {
                         else{
                             ref.child(userName.getText().toString()).child("password").setValue(pw.getText().toString());
                             i.putExtra("userName", userName.getText().toString());
+                            Model model = new Model();
+                            model.saveUserNameToFile(userName.getText().toString(), getApplicationContext());
                             startActivity(i);
                         }
                     }

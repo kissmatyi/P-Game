@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class Game extends AppCompatActivity {
     private String gameId;
     private TextView twGameId;
     private FirebaseDatabase db;
+    private boolean isRecording;
+    private boolean isPlaying;
 
     private TextView twPlayer1;
     private TextView twPlayer2;
@@ -52,6 +55,8 @@ public class Game extends AppCompatActivity {
         this.imagePlayer2 = findViewById(R.id.imagePlayer2);
         this.imagePlayer3 = findViewById(R.id.imagePlayer3);
         this.imagePlayer4 = findViewById(R.id.imagePlayer4);
+        this.isRecording = true;
+        this.isPlaying = false;
         loadPlayers();
     }
 
@@ -80,6 +85,32 @@ public class Game extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void btnPlayOnClick(View v){
+        ImageButton imgBtn = findViewById(R.id.btnPlayer);
+        AudioPlayer player = new AudioPlayer("");
+        if(this.isPlaying){
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.play_bw));
+            this.isPlaying = false;
+        }else{
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.play));
+            this.isPlaying = true;
+        }
+    }
+
+    public void btnRecordOnClick(View v){
+        ImageButton imgBtn = findViewById(R.id.btnRecord);
+       Model model = new Model();
+        if(this.isRecording){
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record));
+            model.recordStart();
+            this.isRecording = false;
+        }else{
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record_bw));
+            model.recordStop();
+            this.isRecording = true;
+        }
     }
 
     public void toMenu(View v){

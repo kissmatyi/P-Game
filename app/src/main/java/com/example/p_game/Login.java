@@ -45,20 +45,10 @@ public class Login extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void saveUserNameToFile(String userName,Context context) {
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("userName.txt", Context.MODE_PRIVATE));
-            outputStreamWriter.write(userName);
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
-
 
     public void toMenu(View v){
         Intent i = new Intent(this, Menu.class);
+        Model model = new Model();
         if(!pw.getText().toString().equals("") && !userName.getText().toString().equals("")){
             db.getReference().child("player").addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -66,7 +56,8 @@ public class Login extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.child(userName.getText().toString()).exists() &&
                             dataSnapshot.child(userName.getText().toString()).child("password").getValue().equals(pw.getText().toString())){
-                            saveUserNameToFile(userName.getText().toString(), getApplicationContext());
+                        Model model = new Model();
+                        model.saveUserNameToFile(userName.getText().toString(), getApplicationContext());
                         i.putExtra("userName", userName.getText().toString());
                         startActivity(i);
                     }

@@ -34,9 +34,9 @@
                 android:id="@+id/gameID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
                 android:layout_marginBottom="5dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,16 +47,16 @@
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:text="Topic: " />
+                    android:text="Topic: "
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/topicName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="20dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -78,18 +78,43 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/twPlayer1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8" />
-
             <ImageView
                 android:id="@+id/imagePlayer1"
                 android:layout_width="53dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/twPlayer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9" />
+
+            <ImageButton
+                android:id="@+id/btnRecord"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnRecordOnClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/voice_record_bw"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:srcCompat="@drawable/voice_record_bw" />
+
+            <ImageButton
+                android:id="@+id/btnPlayer"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/play_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -196,8 +221,8 @@
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="20sp"
+            android:layout_weight="1"
             android:text="Speaking: "
             android:textSize="20dp" />
 
@@ -224,7 +249,6 @@
             android:text="End Game" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

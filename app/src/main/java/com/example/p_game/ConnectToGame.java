@@ -22,8 +22,8 @@ import java.util.Map;
 
 public class ConnectToGame extends AppCompatActivity {
 
-    FirebaseDatabase db;
-    EditText gameID;
+    private FirebaseDatabase db;
+    private EditText gameID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
