@@ -37,6 +37,9 @@ public class Game extends AppCompatActivity {
     private ImageView imagePlayer3;
     private ImageView imagePlayer4;
 
+    TextView topicName;
+    String topic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +50,11 @@ public class Game extends AppCompatActivity {
     private void initValues() {
         Intent i = getIntent();
         this.gameId = i.getStringExtra("gameId");
+        this.topic = i.getStringExtra("selectedTopic");
         this.twGameId = findViewById(R.id.gameID);
         this.db = new DatabaseConn().getConnection();
+        this.topicName = findViewById(R.id.topicName);
+        topicName.setText(topic);
         twGameId.setText(this.gameId);
         this.twPlayer1 = findViewById(R.id.twPlayer1);
         this.twPlayer2 = findViewById(R.id.twPlayer2);

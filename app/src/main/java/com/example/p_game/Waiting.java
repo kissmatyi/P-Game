@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -34,10 +38,16 @@ public class Waiting extends AppCompatActivity {
     private ImageView imagePlayer3;
     private ImageView imagePlayer4;
 
+    ArrayList<String> topicList = new ArrayList();
+    Spinner topicSpinner;
+    String selectedItem;
+    TextView selected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting);
+        setAdapter();
         initValues();
     }
 
@@ -93,8 +103,43 @@ public class Waiting extends AppCompatActivity {
     public void toGame(View v){
         Intent i = new Intent(this, Game.class);
         i.putExtra("gameId", this.gameId);
+        i.putExtra("selectedTopic", selectedItem);
         startActivity(i);
+
     }
 
+    private void setAdapter(){
+        this.db = new DatabaseConn().getConnection();
+        this.db.getReference().child("topics")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            String data = snapshot.getKey().toString().toLowerCase();
+                            topicList.add(data);
+                            topicSpinner = findViewById(R.id.topicOptions);
+                            ArrayAdapter<String> adapter = new ArrayAdapter(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, topicList);
+                            adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+                            topicSpinner.setAdapter(adapter);
+                            topicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    selected = findViewById(R.id.selected);
+                                    selectedItem = topicSpinner.getSelectedItem().toString();
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
+    }
 
 }
