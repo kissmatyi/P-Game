@@ -2,6 +2,7 @@ package com.example.p_game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,27 @@ import android.view.View;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class Menu extends AppCompatActivity {
 
@@ -49,12 +70,41 @@ public class Menu extends AppCompatActivity {
         startActivity(i);
     }
 
+    private String readUserNameFromFile(Context context) {
+        String ret = "";
+        try {
+            InputStream inputStream = context.openFileInput("userName.txt");
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+
+
     public void toNewGame(View v){
-        Intent i = new Intent(this, Waiting.class);
-        i.putExtra("userName",this.name);
+        this.name = readUserNameFromFile(this.getApplicationContext());
+        Intent next = new Intent(this, Waiting.class);
+
+        next.putExtra("userName",this.name);
         gameIdToDb();
-        i.putExtra("gameId", this.gameId);
-        startActivity(i);
+        next.putExtra("gameId", this.gameId);
+        startActivity(next);
     }
 
     private void generateGameId(){
