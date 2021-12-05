@@ -1,7 +1,13 @@
 package com.example.p_game;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.media.MediaRecorder;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,11 +18,21 @@ import java.io.OutputStreamWriter;
 
 public class Model {
 
-    private AudioRecorder recorder;
+    private static final int PERMISSION_CODE = 21;
+    private AudioRecorder audioRecorder;
     private String path;
+    private String recordPermission = Manifest.permission.RECORD_AUDIO;
+    private MediaRecorder mediaRecorder;
+    private DatabaseConn db;
 
     public Model() {
-        recorder = new AudioRecorder("voices");
+        this.mediaRecorder = new MediaRecorder();
+        this.audioRecorder = new AudioRecorder("voices", this.mediaRecorder);
+
+    }
+
+    public void uploadSpeech(String gameId, String userName){
+
     }
 
     public void saveUserNameToFile(String userName, Context context) {
@@ -56,19 +72,26 @@ public class Model {
         return ret;
     }
 
-    protected void recordStart(){
-        try {
-            recorder.start();
-        } catch (IOException e) {
-            e.printStackTrace();
+    protected void recordStart(Context context, Activity activity, String gameId, String userName){
+        if(checkPermissions(context, activity)){
+            this.mediaRecorder = new MediaRecorder();
+            audioRecorder.start(activity, gameId, userName);
         }
     }
 
-    protected void recordStop(){
-        try {
-            recorder.stop();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private boolean checkPermissions(Context context, Activity activity) {
+        if(ActivityCompat.checkSelfPermission(context, recordPermission) == PackageManager.PERMISSION_GRANTED){
+            return true;
+        }else{
+            ActivityCompat.requestPermissions(activity, new String[]{recordPermission}, PERMISSION_CODE);
+            return false;
         }
+
     }
+
+    protected void recordStop(){
+        audioRecorder.stop();
+        this.mediaRecorder = null;
+    }
+
 }

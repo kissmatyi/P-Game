@@ -3,19 +3,21 @@ package com.example.p_game;
 import java.io.File;
 import java.io.IOException;
 
+import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Environment;
 
 public class AudioRecorder {
 
-    final MediaRecorder recorder = new MediaRecorder();
-    public final String path;
+    private MediaRecorder recorder;
+    private String path;
+    private String recordFileName;
 
-    public AudioRecorder(String path) {
-        this.path = sanitizePath(path);
+    public AudioRecorder(String path, MediaRecorder mediaRecorder) {
+        //this.recorder = new MediaRecorder();
+        this.recorder = mediaRecorder;
     }
-
 
     private String sanitizePath(String path) {
         if (!path.startsWith("/")) {
@@ -28,30 +30,27 @@ public class AudioRecorder {
                 + path;
     }
 
-    public void start() throws IOException {
-        String state = android.os.Environment.getExternalStorageState();
-        if (!state.equals(android.os.Environment.MEDIA_MOUNTED)) {
-            throw new IOException("SD Card is not mounted.  It is " + state
-                    + ".");
-        }
-
-        // make sure the directory we plan to store the recording in exists
-        File directory = new File(path).getParentFile();
-        if (!directory.exists() && !directory.mkdirs()) {
-            throw new IOException("Path to file could not be created.");
-        }
+    public void start(Activity activity, String gameId, String userName){
+        this.recordFileName = gameId+"-"+userName+".mp3";
+        this.path = activity.getExternalFilesDir("/").getAbsolutePath();
 
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        recorder.setOutputFile(path);
-        recorder.prepare();
+        recorder.setOutputFile(path + "/" + recordFileName);
+        try {
+            recorder.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         recorder.start();
+
     }
 
-    public void stop() throws IOException {
+    public void stop(){
         recorder.stop();
         recorder.release();
+        //this.recorder = null;
     }
 
     public void playarcoding(String path) throws IOException {

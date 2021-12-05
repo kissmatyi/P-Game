@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.internal.ContextUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,6 +24,8 @@ public class Game extends AppCompatActivity {
     private FirebaseDatabase db;
     private boolean isRecording;
     private boolean isPlaying;
+    private Model model;
+    private String userName;
 
     private TextView twPlayer1;
     private TextView twPlayer2;
@@ -55,8 +58,10 @@ public class Game extends AppCompatActivity {
         this.imagePlayer2 = findViewById(R.id.imagePlayer2);
         this.imagePlayer3 = findViewById(R.id.imagePlayer3);
         this.imagePlayer4 = findViewById(R.id.imagePlayer4);
-        this.isRecording = true;
+        this.isRecording = false;
         this.isPlaying = false;
+        this.model = new Model();
+        this.userName = "userName";
         loadPlayers();
     }
 
@@ -101,15 +106,17 @@ public class Game extends AppCompatActivity {
 
     public void btnRecordOnClick(View v){
         ImageButton imgBtn = findViewById(R.id.btnRecord);
-       Model model = new Model();
-        if(this.isRecording){
+
+        if(!this.isRecording){
+            this.model = new Model();
             imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record));
-            model.recordStart();
-            this.isRecording = false;
+
+            this.model.recordStart(getApplicationContext(), this, this.gameId, this.userName);
+            this.isRecording = true;
         }else{
             imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record_bw));
-            model.recordStop();
-            this.isRecording = true;
+            this.model.recordStop();
+            this.isRecording = false;
         }
     }
 
