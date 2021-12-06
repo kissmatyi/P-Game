@@ -116,6 +116,18 @@
                 app:srcCompat="@drawable/play_bw"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+            <ImageButton
+                android:id="@+id/btnRating"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/star_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,12 +143,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/twPlayer2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer2"
@@ -145,6 +151,50 @@
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
+
+            <TextView
+                android:id="@+id/twPlayer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9" />
+
+            <ImageButton
+                android:id="@+id/btnRecord2"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnRecordOnClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/voice_record_bw"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:srcCompat="@drawable/voice_record_bw" />
+
+            <ImageButton
+                android:id="@+id/btnPlayer2"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/play_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/btnRating2"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/star_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,12 +210,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/twPlayer3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8" />
 
             <ImageView
                 android:id="@+id/imagePlayer3"
@@ -174,6 +218,49 @@
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
+            <TextView
+                android:id="@+id/twPlayer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9" />
+
+            <ImageButton
+                android:id="@+id/btnRecord3"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnRecordOnClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/voice_record_bw"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:srcCompat="@drawable/voice_record_bw" />
+
+            <ImageButton
+                android:id="@+id/btnPlayer3"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/play_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/btnRating3"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/star_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -190,18 +277,55 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/twPlayer4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8" />
-
             <ImageView
                 android:id="@+id/imagePlayer4"
                 android:layout_width="53dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/twPlayer4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9" />
+
+            <ImageButton
+                android:id="@+id/btnRecord4"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnRecordOnClick"
+                android:scaleType="fitCenter"
+                android:src="@drawable/voice_record_bw"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:srcCompat="@drawable/voice_record_bw" />
+
+            <ImageButton
+                android:id="@+id/btnPlayer4"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/play_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/btnRating4"
+                android:layout_width="51sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:backgroundTint="#03FFFFFF"
+                android:onClick="btnPlayOnClick"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/star_bw"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <Space
                 android:layout_width="wrap_content"
