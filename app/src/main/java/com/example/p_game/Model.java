@@ -3,13 +3,10 @@ package com.example.p_game;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.Display;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -17,8 +14,6 @@ import androidx.core.app.ActivityCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -140,11 +135,22 @@ public class Model {
 
     }
 
-
-
     protected void recordStop(){
         audioRecorder.stop();
         this.mediaRecorder = null;
+    }
+
+    protected void playRecord(String gameId, String userName, Activity activity){
+        String fileName = activity.getExternalFilesDir("/").getAbsolutePath() +"/"+getFileName(gameId, userName, activity);
+        try {
+            this.audioRecorder.playRecording(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void stopPlaying(){
+        this.audioRecorder.stop();
     }
 
 }

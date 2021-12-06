@@ -92,7 +92,8 @@
                 android:layout_weight="9" />
 
             <ImageButton
-                android:id="@+id/btnRecord"
+                android:tag="1"
+                android:id="@+id/btnRecord1"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -105,7 +106,7 @@
                 tools:srcCompat="@drawable/voice_record_bw" />
 
             <ImageButton
-                android:id="@+id/btnPlayer"
+                android:id="@+id/btnPlayer1"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -113,11 +114,13 @@
                 android:backgroundTint="#03FFFFFF"
                 android:onClick="btnPlayOnClick"
                 android:scaleType="fitCenter"
+                android:tag="1"
                 app:srcCompat="@drawable/play_bw"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
-                android:id="@+id/btnRating"
+                android:tag="1"
+                android:id="@+id/btnRating1"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -159,6 +162,7 @@
                 android:layout_weight="9" />
 
             <ImageButton
+                android:tag="2"
                 android:id="@+id/btnRecord2"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -172,6 +176,7 @@
                 tools:srcCompat="@drawable/voice_record_bw" />
 
             <ImageButton
+                android:tag="2"
                 android:id="@+id/btnPlayer2"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -184,6 +189,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
+                android:tag="1"
                 android:id="@+id/btnRating2"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -225,6 +231,7 @@
                 android:layout_weight="9" />
 
             <ImageButton
+                android:tag="3"
                 android:id="@+id/btnRecord3"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -238,6 +245,7 @@
                 tools:srcCompat="@drawable/voice_record_bw" />
 
             <ImageButton
+                android:tag="3"
                 android:id="@+id/btnPlayer3"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -250,6 +258,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
+                android:tag="3"
                 android:id="@+id/btnRating3"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -291,6 +300,7 @@
                 android:layout_weight="9" />
 
             <ImageButton
+                android:tag="4"
                 android:id="@+id/btnRecord4"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -304,6 +314,7 @@
                 tools:srcCompat="@drawable/voice_record_bw" />
 
             <ImageButton
+                android:tag="4"
                 android:id="@+id/btnPlayer4"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"
@@ -316,6 +327,7 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
+                android:tag="4"
                 android:id="@+id/btnRating4"
                 android:layout_width="51sp"
                 android:layout_height="wrap_content"

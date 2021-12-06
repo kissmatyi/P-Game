@@ -53,7 +53,7 @@ public class AudioRecorder {
         //this.recorder = null;
     }
 
-    public void playarcoding(String path) throws IOException {
+    public void playRecording(String path) throws IOException {
         MediaPlayer mp = new MediaPlayer();
         mp.setDataSource(path);
         mp.prepare();
