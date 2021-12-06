@@ -3,13 +3,28 @@ package com.example.p_game;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.Display;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,16 +38,50 @@ public class Model {
     private String path;
     private String recordPermission = Manifest.permission.RECORD_AUDIO;
     private MediaRecorder mediaRecorder;
-    private DatabaseConn db;
+    private DatabaseReference databaseReference;
+    private StorageReference storageReference;
+    private Uri voiceUri;
 
     public Model() {
         this.mediaRecorder = new MediaRecorder();
         this.audioRecorder = new AudioRecorder("voices", this.mediaRecorder);
-
+        //this.databaseReference = FirebaseDatabase.getInstance().getReference("speeches");
+        this.storageReference = new DatabaseConn().getStReference();
     }
 
-    public void uploadSpeech(String gameId, String userName){
+    private String getFileName(String gameId, String userName, Activity activity){
+        return  gameId + "-" + userName + ".mp3";
+    }
 
+    public void uploadSpeech(String gameId, String userName, Activity activity){
+        //storageReference speechRef = storageReference.child(getFileName(gameId,userName));
+        StorageReference speechDirRef = storageReference.child(getFileName(gameId,userName, activity));
+        File voiceFile = new File(activity.getExternalFilesDir("/").getAbsolutePath() +"/"+getFileName(gameId, userName, activity));
+
+        if(voiceFile.exists()){
+
+            this.voiceUri = Uri.fromFile(voiceFile);
+            speechDirRef.putFile(voiceUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d("SIKER", "onSuccess: ");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(e.getLocalizedMessage(), "onFailure: ");
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d(taskSnapshot.toString(), "onProgress: ");
+                    }
+                });
+
+        }
     }
 
     public void saveUserNameToFile(String userName, Context context) {
@@ -75,6 +124,8 @@ public class Model {
     protected void recordStart(Context context, Activity activity, String gameId, String userName){
         if(checkPermissions(context, activity)){
             this.mediaRecorder = new MediaRecorder();
+            //TODO
+            //only 30 sec
             audioRecorder.start(activity, gameId, userName);
         }
     }
@@ -88,6 +139,8 @@ public class Model {
         }
 
     }
+
+
 
     protected void recordStop(){
         audioRecorder.stop();

@@ -123,6 +123,7 @@ public class Game extends AppCompatActivity {
             imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record_bw));
             this.model.recordStop();
             this.isRecording = false;
+            this.model.uploadSpeech(this.gameId,"userName", this);
         }
     }
 
