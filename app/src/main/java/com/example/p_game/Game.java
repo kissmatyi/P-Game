@@ -3,21 +3,25 @@ package com.example.p_game;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.internal.ContextUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Game extends AppCompatActivity {
@@ -28,7 +32,6 @@ public class Game extends AppCompatActivity {
     private boolean isPlaying;
     private Model model;
     private String userName;
-    private List<String> userNamesList;
 
     private TextView twPlayer1;
     private TextView twPlayer2;
@@ -67,11 +70,10 @@ public class Game extends AppCompatActivity {
         this.imagePlayer2 = findViewById(R.id.imagePlayer2);
         this.imagePlayer3 = findViewById(R.id.imagePlayer3);
         this.imagePlayer4 = findViewById(R.id.imagePlayer4);
-        this.userNamesList = new ArrayList();
         this.isRecording = false;
         this.isPlaying = false;
         this.model = new Model();
-        this.userName = this.model.readUserNameFromFile(this.getApplicationContext());
+        this.userName = "userName";
         loadPlayers();
     }
 
@@ -88,7 +90,6 @@ public class Game extends AppCompatActivity {
                 TextView[] textViews = new TextView[]{twPlayer1, twPlayer2, twPlayer3, twPlayer4};
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     if(index <= 4){
-                        userNamesList.add(snapshot.getKey());
                         textViews[index].setText(snapshot.getKey());
                     }
                     //SET PICTURE
@@ -104,72 +105,98 @@ public class Game extends AppCompatActivity {
     }
 
     public void btnPlayOnClick(View v){
-        ImageButton imgBtn = findViewById(v.getId());
+        ImageButton imgBtn = findViewById(R.id.btnPlayer);
         AudioPlayer player = new AudioPlayer("");
-        if(!this.isPlaying){
-            playRecording(imgBtn, this);
+        if(this.isPlaying){
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.play_bw));
+            this.isPlaying = false;
         }else{
-           stopPlaying(imgBtn);
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.play));
+            this.isPlaying = true;
         }
-        //TODO
-        //Check if the file was uploaded or not
-    }
-
-    private void stopPlaying(ImageButton imgBtn) {
-        imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.play));
-        this.model.stopPlaying();
-        this.isPlaying = true;
-    }
-
-    private void playRecording(ImageButton imgBtn, Activity activity) {
-        imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.play_bw));
-        this.model.playRecord(this.gameId,getUserName(imgBtn), activity);
-        this.isPlaying = false;
     }
 
     public void btnRecordOnClick(View v){
-        ImageButton imgBtn = findViewById(v.getId());
-        if(hasAccessToButton(imgBtn)){
-            if(!this.isRecording){
-                startRec(imgBtn);
-            }else{
-                stopRec(imgBtn);
-            }
+        ImageButton imgBtn = findViewById(R.id.btnRecord);
+
+        if(!this.isRecording){
+            this.model = new Model();
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record));
+
+            this.model.recordStart(getApplicationContext(), this, this.gameId, this.userName);
+            this.isRecording = true;
         }else{
-            //Not his/her button
+            imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record_bw));
+            this.model.recordStop();
+            this.isRecording = false;
         }
-
     }
 
-    private boolean hasAccessToButton(ImageButton imgBtn){
-        return this.userName.equals(getUserName(imgBtn)) && getUserName(imgBtn).length() != 0;
-    }
+    public void btnRateOnClick(View v){
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-    private String getUserName(ImageButton imgBtn){
-        String userName = "";
-        int index = 0;
-        try{
-            index = Integer.parseInt(imgBtn.getTag().toString())-1;
-            userName = this.userNamesList.get(index);
-        }catch(Exception e){
+        alert.setTitle("Rating");
+        alert.setMessage("Please rate this player's speech");
 
-        }
+        LinearLayout linear=new LinearLayout(this);
+        ImageButton imgBtn = findViewById(R.id.btnRating);
 
-        return userName;
-    }
+        linear.setOrientation(LinearLayout.HORIZONTAL);
+        linear.setPadding(20,20,20,20);
+        TextView text=new TextView(this);
+        text.setText(String.valueOf(5));
+        linear.setGravity(Gravity.CENTER);
+        text.setGravity(Gravity.CENTER);
 
-    private void startRec(ImageButton imgBtn) {
-        this.model = new Model();
-        imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record));
-        this.model.recordStart(getApplicationContext(), this, this.gameId, getUserName(imgBtn));
-        this.isRecording = true;
-    }
+        SeekBar seek=new SeekBar(this);
+        seek.setMax(10);
+        seek.setMin(1);
+        seek.setProgress(5);
+        seek.setMinWidth(600);
 
-    private void stopRec(ImageButton imgBtn) {
-        imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.voice_record_bw));
-        this.model.recordStop();
-        this.isRecording = false;
-        this.model.uploadSpeech(this.gameId,getUserName(imgBtn), this);
+
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                text.setText(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        linear.addView(seek);
+        linear.addView(text);
+
+        alert.setView(linear);
+
+
+
+        alert.setPositiveButton("Ok",new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog,int id)
+            {
+                Toast.makeText(getApplicationContext(), "OK Pressed",Toast.LENGTH_LONG).show();
+                imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.star));
+            }
+        });
+
+        alert.setNegativeButton("Cancel",new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog,int id)
+            {
+                Toast.makeText(getApplicationContext(), "Cancel Pressed",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        alert.show();
     }
 
     public void toMenu(View v){

@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class Waiting extends AppCompatActivity {
     private String gameId = "";
     private FirebaseDatabase db;
+    String userName;
 
     private TextView twGameId;
     private TextView twPlayer1;
@@ -54,6 +55,7 @@ public class Waiting extends AppCompatActivity {
     private void initValues(){
         Intent i = getIntent();
         this.gameId = i.getStringExtra("gameId");
+        this.userName = i.getStringExtra("userName");
         this.twGameId = findViewById(R.id.gameID);
         this.twGameId.setText(this.gameId.toUpperCase());
         this.db = new DatabaseConn().getConnection();
@@ -104,6 +106,7 @@ public class Waiting extends AppCompatActivity {
         Intent i = new Intent(this, Game.class);
         i.putExtra("gameId", this.gameId);
         i.putExtra("selectedTopic", selectedItem);
+        i.putExtra("userName", this.userName);
         startActivity(i);
 
     }
