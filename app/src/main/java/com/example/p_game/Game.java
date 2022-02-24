@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -32,6 +33,9 @@ public class Game extends AppCompatActivity {
     private boolean isPlaying;
     private Model model;
     private String userName;
+    private String points;
+    private int allPoint = 0;
+    private String playerName;
 
     private TextView twPlayer1;
     private TextView twPlayer2;
@@ -185,6 +189,11 @@ public class Game extends AppCompatActivity {
             {
                 Toast.makeText(getApplicationContext(), "OK Pressed",Toast.LENGTH_LONG).show();
                 imgBtn.setImageDrawable(getResources().getDrawable(R.drawable.star));
+                int newPoint = Integer.valueOf(text.getText().toString());
+                allPoint += newPoint;
+                points = String.valueOf(allPoint);
+                playerName = twPlayer1.getText().toString();
+                setPoints(playerName);
             }
         });
 
@@ -197,6 +206,11 @@ public class Game extends AppCompatActivity {
         });
 
         alert.show();
+    }
+
+    public void setPoints(String playerName){
+
+        db.getReference().child("games").child(this.gameId).child(playerName).setValue(points);
     }
 
     public void toMenu(View v){
